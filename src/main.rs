@@ -133,6 +133,10 @@ fn main() {
 
     let mut state = state::State::new(cmd);
 
+    // We draw one additional time as workaround for the bug:
+    // https://gitlab.freedesktop.org/wayland/wayland/-/issues/133
+    draw(&mut state, &config, &mut surface);
+
     loop {
         let mut should_redraw = false;
         for event in key_stream.try_iter() {
